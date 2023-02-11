@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, Partials, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
 var net = require('net');
+const config = require('./config.js');
 
 const HOST = '192.168.0.14';
 const PORT = 9000;
@@ -126,6 +127,6 @@ bot.on('messageCreate', (msg) => {
 });
 
 
-bot.login('Nzc0Mjk5NTIxODY5ODA3NjI2.G0RthT.UipikU7uvYpJMNblGJnvN5etCyrCGKGcTPqUGI');
+bot.login(config.bot_key);
 
 
