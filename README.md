@@ -26,10 +26,12 @@ The car was controlled using a custom Discord.js bot, which could be accessed by
 
 ## Images
 
-![App Screenshot](https://raw.githubusercontent.com/genti91/ardu-car/main/images/car1.jpg?token=GHSAT0AAAAAABWKGXPFSL46RK7SLPHIPNAMY7JP5FQ)
+![App Screenshot](https://github.com/genti91/ardu-car/blob/main/images/car1.jpg?raw=true)
 
-![App Screenshot](https://raw.githubusercontent.com/genti91/ardu-car/main/images/car2.jpg?token=GHSAT0AAAAAABWKGXPEHFIXVON25OAP64EWY7JP5YA)
+![App Screenshot](https://github.com/genti91/ardu-car/blob/main/images/car2.jpg?raw=true)
 
-![App Screenshot](https://raw.githubusercontent.com/genti91/ardu-car/main/images/rfid.jpg?token=GHSAT0AAAAAABWKGXPESDVQJLLJCQWVL3A4Y7JP6GA)
+![App Screenshot](https://github.com/genti91/ardu-car/blob/main/images/rfid.jpg?raw=true)
 
-![App Screenshot](https://raw.githubusercontent.com/genti91/ardu-car/main/images/3d-parts.png?token=GHSAT0AAAAAABWKGXPFMRKAETE2KTNNV6GEY7JP6IQ)
+![App Screenshot](https://github.com/genti91/ardu-car/blob/main/images/discord.png?raw=true)
+
+![App Screenshot](https://github.com/genti91/ardu-car/blob/main/images/3d-parts.png?raw=true)
