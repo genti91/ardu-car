@@ -77,6 +77,7 @@ unsigned long prevTime2 = millis();
 int thisNote = 0;
 bool playing = false;
 bool song = false;
+int interval = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -114,9 +115,30 @@ void loop() {
       prevTime = currentTime;
       command = "up";
     }
-    
+    if(rx.startsWith("-w") && command == ""){
+      Serial.println("moving -w");
+      int spaceIndex = rx.indexOf(' ');
+      String numberString = rx.substring(spaceIndex + 1);
+      Serial.println(numberString.toInt());
+      interval = numberString.toInt();
+      go_Advance();
+      set_Motorspeed(255,255);
+      prevTime = currentTime;
+      command = "up";
+    }
     if(rx == "Down" && command == ""){
       Serial.println("Moving Back");
+      go_Back();
+      set_Motorspeed(255,255);
+      prevTime = currentTime;
+      command = "down";
+    }
+    if(rx.startsWith("-s") && command == ""){
+      Serial.println("moving -s");
+      int spaceIndex = rx.indexOf(' ');
+      String numberString = rx.substring(spaceIndex + 1);
+      Serial.println(numberString.toInt());
+      interval = numberString.toInt();
       go_Back();
       set_Motorspeed(255,255);
       prevTime = currentTime;
@@ -129,8 +151,30 @@ void loop() {
       prevTime = currentTime;
       command = "left";
     }
+    if(rx.startsWith("-a") && command == ""){
+      Serial.println("moving -a");
+      int spaceIndex = rx.indexOf(' ');
+      String numberString = rx.substring(spaceIndex + 1);
+      Serial.println(numberString.toInt());
+      interval = numberString.toInt();
+      go_Left();
+      set_Motorspeed(255,255);
+      prevTime = currentTime;
+      command = "left";
+    }
     if(rx == "Right" && command == ""){
       Serial.println("Moving Right");
+      go_Right();
+      set_Motorspeed(255,255);
+      prevTime = currentTime;
+      command = "right";
+    }
+    if(rx.startsWith("-d") && command == ""){
+      Serial.println("moving -d");
+      int spaceIndex = rx.indexOf(' ');
+      String numberString = rx.substring(spaceIndex + 1);
+      Serial.println(numberString.toInt());
+      interval = numberString.toInt();
       go_Right();
       set_Motorspeed(255,255);
       prevTime = currentTime;
@@ -170,17 +214,27 @@ void loop() {
     }
   }
   if(command == "up" || command == "down"){
-    if(currentTime - prevTime > 1500){
+    int delay = 1500;
+    if (interval > 0) {
+      delay = interval;
+    }
+    if(millis() - prevTime > delay){
       stop_Stop();
       Serial.println("Stop");
       command = "";
+      interval = 0;
     }
   }
   if(command == "left" || command == "right"){
-    if(currentTime - prevTime > 1100){
+    int delay = 1100;
+    if (interval > 0) {
+      delay = interval;
+    }
+    if(currentTime - prevTime > delay){
       stop_Stop();
       Serial.println("Stop");
       command = "";
+      interval = 0;
     }
   }
 

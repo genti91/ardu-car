@@ -2,16 +2,21 @@ const { Client, GatewayIntentBits, Partials, ActionRowBuilder, ButtonBuilder, Bu
 var net = require('net');
 const config = require('./config.js');
 
-const HOST = '192.168.0.14';
+const express = require('express')
+const app = express()
+const port = 5001
+
+
+const HOST = '192.168.0.19';
 const PORT = 9000;
 
 var socket = new net.Socket();
 socket.connect(PORT, HOST);
 socket.on('connect', () => {
-  console.log('Connected');
+    console.log('Connected');
 });
 socket.on('data', (data) => {
-  console.log(`${data}`);
+    console.log(`${data}`);
 });
 
 var light = 'off'
@@ -28,12 +33,33 @@ const bot = new Client({
 });
 
 
+app.get('/', (req, res) => {
+    res.send('Finished!')
+    console.log("Finished!")
+    
+})
+app.listen(port, () => {
+    console.log(`Express app on port ${port}`)
+})
+
+
 bot.on('ready', () => {
-  console.log('bot is working');
+    console.log('bot is working');
 });
 
 bot.on('messageCreate', (msg) => {
-    if(msg.content === 'button'){
+
+    if (msg.content.startsWith("-w") || msg.content.startsWith("-s") || msg.content.startsWith("-a") || msg.content.startsWith("-d")){
+        if (!isNaN(msg.content.substring(msg.content.indexOf(" ") + 1))) {
+            let number = parseInt(msg.content.substring(msg.content.indexOf(" ") + 1))
+            if (number > 0 && number <= 5000) {
+                socket.write(msg.content)
+            }
+        }
+        msg.delete()
+    }
+
+    if(msg.content === '!button'){
         const row1 = new ActionRowBuilder()
         .addComponents(
             new ButtonBuilder()
